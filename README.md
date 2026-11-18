@@ -28,7 +28,7 @@
   --shadow:0 4px 24px rgba(0,0,0,.08);
 }
 html{ scroll-behavior:smooth; }
-body{ background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.6; min-height:100vh; transition:background var(--transition),color var(--transition); overflow-x:hidden; }
+body{ background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.6; min-height:100vh; transition:background var(--transition),color var(--transition); overflow-x:hidden; padding-bottom:110px; }
 a{ color:var(--accent); text-decoration:none; }
 a:hover{ color:var(--accent-light); }
 img{ max-width:100%; }
@@ -200,10 +200,10 @@ label{ display:block; font-size:.8rem; color:var(--muted); margin-bottom:5px; ma
 .hidden{ display:none !important; }
 
 /* ============================================================
-   BOTÓN COPIAR FLOTANTE
+   BOTÓN COPIAR FLOTANTE (subido para no chocar con el banner)
 ============================================================ */
 .copy-fab{
-  position:fixed; bottom:24px; right:24px;
+  position:fixed; bottom:130px; right:24px;
   background:linear-gradient(135deg,var(--gold),var(--orange));
   color:#000; border:none; padding:14px 22px; border-radius:50px;
   font-weight:800; cursor:pointer; box-shadow:0 4px 24px rgba(240,185,11,.5);
@@ -214,7 +214,7 @@ label{ display:block; font-size:.8rem; color:var(--muted); margin-bottom:5px; ma
 
 /* TOAST */
 .toast{
-  position:fixed; bottom:90px; right:24px;
+  position:fixed; bottom:190px; right:24px;
   background:var(--green); color:#fff; padding:13px 22px;
   border-radius:10px; font-weight:700; z-index:1000;
   opacity:0; transform:translateY(20px); transition:.3s; pointer-events:none;
@@ -246,7 +246,8 @@ footer{
 }
 @media(max-width:480px){
   .grid-4{ grid-template-columns:1fr; }
-  .copy-fab{ bottom:16px; right:16px; padding:12px 16px; font-size:.8rem; }
+  .copy-fab{ bottom:120px; right:16px; padding:12px 16px; font-size:.8rem; }
+  .toast{ bottom:180px; right:16px; }
 }
 </style>
 </head>
@@ -729,7 +730,6 @@ function toggleTheme(){
   document.documentElement.setAttribute('data-theme', state.theme === 'light' ? 'light' : '');
   document.getElementById('themeBtn').textContent = state.theme === 'dark' ? '🌙' : '☀️';
   localStorage.setItem('theme', state.theme);
-  // Resetear widgets TV para que se recarguen con el tema nuevo
   ['tv_dashboard','tv_crypto','tv_stocks','tv_sp500','tv_analysis','tv_news','tv_calendar','tv_heatmap'].forEach(id => {
     const el = document.getElementById(id);
     if(el){ el.dataset.loaded = ''; el.innerHTML = ''; }
@@ -772,7 +772,7 @@ function fmtPct(n){
 function clsPct(n){ return n >= 0 ? 'up' : 'down'; }
 
 /* ============================================================
-   HELPER: Widgets TradingView que SÍ funcionan al inyectarse
+   HELPER: Widgets TradingView (external-embedding)
 ============================================================ */
 function createTVEmbed(containerId, scriptSrc, config){
   const container = document.getElementById(containerId);
@@ -1019,7 +1019,7 @@ function renderWatchlist(){
 }
 
 /* ============================================================
-   BOLSA (arreglado)
+   BOLSA
 ============================================================ */
 function loadStocksWidget(){
   const c = document.getElementById('tv_stocks');
@@ -1077,7 +1077,7 @@ function loadAnalysisChart(){
 }
 
 /* ============================================================
-   NOTICIAS (arreglado el timeline)
+   NOTICIAS
 ============================================================ */
 const fallbackNews = [
   {t:'Bitcoin supera los $100K: ¿nuevo ciclo alcista?', d:'El BTC alcanza un nuevo máximo histórico impulsado por la adopción institucional.', c:'Mercados', time:'Hace 2h'},
@@ -1119,7 +1119,7 @@ function loadNewsWidget(){
 }
 
 /* ============================================================
-   CALENDARIO (arreglado)
+   CALENDARIO
 ============================================================ */
 function loadCalendarWidget(){
   const c = document.getElementById('tv_calendar');
@@ -1584,41 +1584,58 @@ function init(){
 
 document.addEventListener('DOMContentLoaded', init);
 </script>
+
 <!-- ============================================================
      A-ADS STICKY BANNER — Anuncio inferior
 ============================================================ -->
-<!-- BEGIN AADS AD UNIT 2462578 -->
+<!-- BEGIN AADS AD UNIT 2462580 -->
 <div style="position: absolute; z-index: 99999">
-  <input autocomplete="off" type="checkbox" id="aadsstickymwmg3e4o" hidden />
+  <input autocomplete="off" type="checkbox" id="aadsstickymwmhymdu" hidden />
   <div style="padding-top: 0; padding-bottom: auto;">
     <div style="width:100%;height:auto;position:fixed;text-align:center;font-size:0;bottom:0;left:0;right:0;margin:auto">
-      <label for="aadsstickymwmg3e4o" style="top: 50%;transform: translateY(-50%);right:24px;position: absolute;border-radius: 4px; background: rgba(248, 248, 249, 0.70); padding: 4px;z-index: 99999;cursor:pointer">
+      <label for="aadsstickymwmhymdu" style="top: 50%;transform: translateY(-50%);right:24px;position: absolute;border-radius: 4px; background: rgba(248, 248, 249, 0.70); padding: 4px;z-index: 99999;cursor:pointer">
         <svg fill="#000000" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490">
           <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490 489.292,457.678 277.331,245.004 489.292,32.337 "/>
         </svg>
       </label>
       <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
-        <iframe data-aa="2462578" src="//acceptable.a-ads.com/2462578/?size=Adaptive" style="border:0; padding:0; width:70%; height:auto; overflow:hidden; margin: auto"></iframe>
+        <iframe data-aa="2462580" src="//acceptable.a-ads.com/2462580/?size=Adaptive" style="border:0; padding:0; width:70%; height:auto; overflow:hidden; margin: auto"></iframe>
       </div>
     </div>
     <style>
-      #aadsstickymwmg3e4o:checked + div { display: none; }
+      #aadsstickymwmhymdu:checked + div { display: none; }
     </style>
   </div>
 </div>
-<!-- END AADS AD UNIT 2462578 -->
+<!-- END AADS AD UNIT 2462580 -->
 
 <script>
-/* Ajustar padding inferior según si el anuncio está cerrado o no */
+/* ============================================================
+   AJUSTE DINÁMICO DEL LAYOUT SEGÚN EL ANUNCIO
+   El banner está en la parte inferior. Reservamos padding-bottom
+   para que no tape el footer, el copy-fab ni los toasts.
+============================================================ */
 (function(){
-  const adCheckbox = document.getElementById('aadsstickymwmg3e4o');
-  if(!adCheckbox) return;
-  const updatePadding = () => {
-    document.body.style.paddingBottom = adCheckbox.checked ? '20px' : '110px';
-  };
-  updatePadding();
-  adCheckbox.addEventListener('change', updatePadding);
+  const cb = document.getElementById('aadsstickymwmhymdu');
+  const copyFab = document.querySelector('.copy-fab');
+  const toast = document.getElementById('toast');
+  if(!cb) return;
+
+  const AD_HEIGHT = 110;
+  const FAB_OFFSET = AD_HEIGHT + 20;
+  const TOAST_OFFSET = AD_HEIGHT + 80;
+
+  function applyLayout(){
+    const active = !cb.checked;
+    document.body.style.paddingBottom = active ? AD_HEIGHT + 'px' : '20px';
+    if(copyFab) copyFab.style.bottom = active ? FAB_OFFSET + 'px' : '24px';
+    if(toast) toast.style.bottom = active ? TOAST_OFFSET + 'px' : '90px';
+  }
+
+  applyLayout();
+  cb.addEventListener('change', applyLayout);
 })();
 </script>
+
 </body>
 </html>
